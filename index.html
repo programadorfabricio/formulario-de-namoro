@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Candidatura para namorar com o Ruindade</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#ff4d6d,#6a5cff);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+margin:0;
+}
+
+.card{
+background:rgba(0,0,0,0.6);
+padding:30px;
+border-radius:12px;
+width:420px;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+background:white;
+color:black;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.opcoes button{
+display:block;
+width:100%;
+margin:8px 0;
+}
+
+.progresso{
+height:8px;
+background:#444;
+border-radius:5px;
+margin-bottom:20px;
+}
+
+.barra{
+height:8px;
+background:#00ff9d;
+border-radius:5px;
+width:0%;
+}
+
+input{
+width:80%;
+padding:8px;
+margin:5px;
+border-radius:6px;
+border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="app">
+
+<h1>Processo seletivo</h1>
+<p>para namorar com o Ruindade</p>
+
+<button onclick="comecar()">Começar teste</button>
+
+</div>
+
+<script>
+
+let perguntas = [
+
+{
+pergunta:"Se eu disser 'bora comer', você pensa em:",
+opcoes:[
+{texto:"comida", pontos:10},
+{texto:"lanche", pontos:6},
+{texto:"eu", pontos:8}
+]
+},
+
+{
+pergunta:"Se eu demorar responder mensagem:",
+opcoes:[
+{texto:"espera", pontos:10},
+{texto:"manda mais mensagens", pontos:8},
+{texto:"me ignora quando eu responder", pontos:3}
+]
+},
+
+{
+pergunta:"Seu rolê ideal é:",
+opcoes:[
+{texto:"sair", pontos:7},
+{texto:"ficar em casa", pontos:10},
+{texto:"qualquer lugar", pontos:8}
+]
+},
+
+{
+pergunta:"Você gosta de:",
+opcoes:[
+{texto:"pizza", pontos:9},
+{texto:"hambúrguer", pontos:7},
+{texto:"comida", pontos:10}
+]
+},
+
+{
+pergunta:"Nível de ciúmes:",
+opcoes:[
+{texto:"tranquilo", pontos:10},
+{texto:"normal", pontos:7},
+{texto:"FBI ", pontos:2}
+]
+},
+
+{
+pergunta:"Em uma discussão você:",
+opcoes:[
+{texto:"conversa", pontos:10},
+{texto:"fica quieta", pontos:6},
+{texto:"manda indireta", pontos:2}
+]
+},
+
+{
+pergunta:"Eu conto uma piada ruim, você:",
+opcoes:[
+{texto:"ri", pontos:10},
+{texto:"finge que ri", pontos:7},
+{texto:"troca de assunto", pontos:4}
+]
+},
+
+{
+pergunta:"Se eu quiser ver filme:",
+opcoes:[
+{texto:"vemos o filme", pontos:8},
+{texto:"dormimos no meio", pontos:10},
+{texto:"ignoramos o filme", pontos:6}
+]
+},
+
+{
+pergunta:"Você ronca?",
+opcoes:[
+{texto:"não", pontos:10},
+{texto:"um pouco", pontos:7},
+{texto:"igual um trator", pontos:3}
+]
+},
+
+{
+pergunta:"Se eu mandar 'confia', você:",
+opcoes:[
+{texto:"confia", pontos:10},
+{texto:"desconfia", pontos:6},
+{texto:"só ignora", pontos:2}
+]
+}
+
+]
+
+let atual = 0
+let respostas = []
+let pontuacao = 0
+
+function comecar(){
+
+document.getElementById("app").innerHTML = `
+<div class="progresso">
+<div class="barra" id="barra"></div>
+</div>
+
+<h2 id="pergunta"></h2>
+
+<div class="opcoes" id="opcoes"></div>
+`
+
+mostrarPergunta()
+
+}
+
+function mostrarPergunta(){
+
+let p = perguntas[atual]
+
+document.getElementById("pergunta").innerText = p.pergunta
+
+let html=""
+
+p.opcoes.forEach(op=>{
+html += `<button onclick="responder(${op.pontos})">${op.texto}</button>`
+})
+
+document.getElementById("opcoes").innerHTML = html
+
+let progresso = (atual/perguntas.length)*100
+document.getElementById("barra").style.width = progresso+"%"
+
+}
+
+function responder(pontos){
+
+pontuacao += pontos
+atual++
+
+if(atual < perguntas.length){
+mostrarPergunta()
+}else{
+formularioFinal()
+}
+
+}
+
+function formularioFinal(){
+
+document.getElementById("app").innerHTML = `
+
+<h2>Última etapa 👀</h2>
+
+<p>Se chegou até aqui, preencha:</p>
+
+<input id="nome" placeholder="Nome"><br>
+<input id="insta" placeholder="Instagram"><br>
+<input id="cidade" placeholder="Cidade"><br>
+
+<br>
+
+<button onclick="enviar()">Enviar candidatura</button>
+
+`
+}
+
+function enviar(){
+
+let nome = document.getElementById("nome").value
+let insta = document.getElementById("insta").value
+let cidade = document.getElementById("cidade").value
+
+if(nome === "" || insta === "" || cidade === ""){
+alert("Preencha todos os campos antes de enviar 😡")
+return
+}
+
+let maximo = perguntas.length * 10
+let porcentagem = Math.round((pontuacao / maximo) * 100)
+
+console.log("Quiz:",respostas)
+console.log("Pessoa:",nome,insta,cidade)
+
+let mensagem=""
+
+if(porcentagem < 40){
+mensagem = "🚫 Compatibilidade baixa. vamos ser amigos pô."
+}
+else if(porcentagem < 70){
+mensagem = "🙂 Compatibilidade média. será?."
+}
+else{
+mensagem = "💍 Alta compatibilidade. vou te chamar no insta."
+}
+
+fetch("https://script.google.com/macros/s/AKfycbx7-uXTyRUltIxBI_oCoGC-qtl64Qw9jPAsJaRGTQLiPGl6StHnx9P9kkWPp5xJ1DX8mg/exec",{
+method:"POST",
+body:JSON.stringify({
+nome:nome,
+insta:insta,
+cidade:cidade,
+pontuacao:pontuacao,
+compatibilidade:porcentagem
+})
+})
+
+document.getElementById("app").innerHTML = `
+<h2>Obrigado ${nome}</h2>
+<p>Compatibilidade amorosa: ${porcentagem}%</p>
+<p>${mensagem}</p>
+`
+}
+
+</script>
+
+</body>
+</html>
