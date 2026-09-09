@@ -1,301 +1,694 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Candidatura para namorar com o Ruindade</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidatura para namorar com o Fabrício</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --mesa:#1E2A38;
+  --via-rosa:#F7D9DF;
+  --via-amarela:#F0DC7E;
+  --tinta:#16265E;
+  --vermelho:#D42D3D;
+  --verde:#1F7A4D;
+  --grafite:#5A6472;
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%}
 
 body{
-font-family: Arial;
-background: linear-gradient(135deg,#ff4d6d,#6a5cff);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-margin:0;
+  margin:0;
+  background:var(--mesa);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 44px);
+  font-family:"Courier Prime", ui-monospace, monospace;
+  color:var(--tinta);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px;
 }
 
-.card{
-background:rgba(0,0,0,0.6);
-padding:30px;
-border-radius:12px;
-width:420px;
-text-align:center;
+.mesa{
+  position:relative;
+  width:100%;
+  max-width:520px;
 }
 
-button{
-padding:10px 20px;
-margin:10px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-background:white;
-color:black;
-font-weight:bold;
+/* via amarela aparecendo atrás */
+.mesa::before{
+  content:"";
+  position:absolute;
+  inset:14px -10px -14px 12px;
+  background:var(--via-amarela);
+  border-radius:2px;
+  transform:rotate(1.6deg);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
 
-button:hover{
-transform:scale(1.05);
+.ficha{
+  position:relative;
+  background:var(--via-rosa);
+  border-radius:2px;
+  padding:26px 24px 30px;
+  transform:rotate(-.8deg);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  overflow:hidden;
 }
 
-.opcoes button{
-display:block;
-width:100%;
-margin:8px 0;
+/* furos de fichário */
+.ficha::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:26px;
+  background:
+    radial-gradient(circle at 13px 16%, var(--mesa) 5px, transparent 5px),
+    radial-gradient(circle at 13px 50%, var(--mesa) 5px, transparent 5px),
+    radial-gradient(circle at 13px 84%, var(--mesa) 5px, transparent 5px);
+  opacity:.35;
 }
 
-.progresso{
-height:8px;
-background:#444;
-border-radius:5px;
-margin-bottom:20px;
+.conteudo{padding-left:22px}
+
+.cabecalho{
+  border-bottom:2px solid var(--tinta);
+  padding-bottom:10px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
 }
 
-.barra{
-height:8px;
-background:#00ff9d;
-border-radius:5px;
-width:0%;
+.orgao{
+  font-size:11px;
+  letter-spacing:.5px;
+  line-height:1.4;
+  color:var(--grafite);
 }
 
-input{
-width:80%;
-padding:8px;
-margin:5px;
-border-radius:6px;
-border:none;
+.protocolo{
+  font-size:11px;
+  color:var(--grafite);
+  text-align:right;
+  white-space:nowrap;
 }
 
+h1{
+  font-family:"Anton", Impact, sans-serif;
+  font-weight:400;
+  font-size:clamp(30px,8vw,44px);
+  line-height:.92;
+  margin:0 0 6px;
+  letter-spacing:.5px;
+}
+
+.subtitulo{
+  font-size:14px;
+  line-height:1.5;
+  margin:0 0 26px;
+  max-width:38ch;
+}
+
+.aviso{
+  font-size:12px;
+  color:var(--grafite);
+  border-left:3px solid var(--vermelho);
+  padding-left:10px;
+  margin:0 0 26px;
+  line-height:1.5;
+}
+
+/* checklist de etapas */
+.etapas{
+  display:flex;
+  gap:5px;
+  margin-bottom:6px;
+  flex-wrap:wrap;
+}
+.quadro{
+  width:16px;height:16px;
+  border:1.5px solid var(--tinta);
+  border-radius:1px;
+  position:relative;
+  background:transparent;
+}
+.quadro.feito::after{
+  content:"×";
+  position:absolute;
+  inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Anton",sans-serif;
+  font-size:15px;
+  color:var(--vermelho);
+  line-height:1;
+}
+.quadro.atual{border-color:var(--vermelho);border-width:2.5px}
+
+.contador{
+  font-size:11px;
+  color:var(--grafite);
+  margin-bottom:22px;
+}
+
+.pergunta{
+  font-size:18px;
+  line-height:1.4;
+  font-weight:700;
+  margin:0 0 18px;
+  min-height:50px;
+}
+
+.numero-item{
+  font-family:"Anton",sans-serif;
+  color:var(--vermelho);
+  margin-right:8px;
+}
+
+.opcoes{display:flex;flex-direction:column;gap:9px}
+
+.opcao{
+  font-family:inherit;
+  font-size:15px;
+  text-align:left;
+  background:rgba(255,255,255,.5);
+  border:1.5px solid var(--tinta);
+  border-radius:1px;
+  color:var(--tinta);
+  padding:12px 14px 12px 40px;
+  cursor:pointer;
+  position:relative;
+  transition:background .12s, transform .12s;
+}
+.opcao::before{
+  content:"";
+  position:absolute;
+  left:13px; top:50%;
+  transform:translateY(-50%);
+  width:14px;height:14px;
+  border:1.5px solid var(--tinta);
+  border-radius:1px;
+}
+.opcao:hover:not(:disabled){background:#fff;transform:translateX(3px)}
+.opcao:focus-visible{outline:3px solid var(--vermelho);outline-offset:2px}
+.opcao:disabled{cursor:default;opacity:.55}
+.opcao.escolhida{opacity:1;background:#fff}
+.opcao.escolhida::before{
+  content:"×";
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Anton",sans-serif;
+  color:var(--vermelho);
+  font-size:16px;
+  line-height:1;
+}
+
+/* parecer manuscrito */
+.parecer{
+  margin-top:16px;
+  min-height:22px;
+  color:var(--vermelho);
+  font-style:italic;
+  font-size:14.5px;
+  line-height:1.4;
+  opacity:0;
+  transform:translateY(6px) rotate(-1deg);
+}
+.parecer.visivel{
+  opacity:1;
+  transform:translateY(0) rotate(-1deg);
+  transition:opacity .25s ease .35s, transform .25s ease .35s;
+}
+
+/* carimbo */
+.carimbo{
+  position:absolute;
+  left:50%; top:46%;
+  z-index:5;
+  font-family:"Anton",sans-serif;
+  font-size:clamp(26px,7vw,38px);
+  letter-spacing:2px;
+  padding:8px 20px;
+  border:5px double currentColor;
+  border-radius:4px;
+  pointer-events:none;
+  opacity:0;
+  white-space:nowrap;
+  transform:translate(-50%,-50%) rotate(-14deg) scale(2.6);
+}
+.carimbo.bate{animation:bater .55s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes bater{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(2.6)}
+  55%{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(.94)}
+  70%{transform:translate(-50%,-50%) rotate(-14deg) scale(1.04)}
+  100%{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
+}
+.carimbo.aprovado{color:var(--verde)}
+.carimbo.analise{color:#B4761A}
+.carimbo.reprovado{color:var(--vermelho)}
+
+.ficha.tremor{animation:tremer .3s}
+@keyframes tremer{
+  0%,100%{transform:rotate(-.8deg)}
+  25%{transform:rotate(-.8deg) translate(-4px,2px)}
+  50%{transform:rotate(-.8deg) translate(3px,-2px)}
+  75%{transform:rotate(-.8deg) translate(-2px,1px)}
+}
+
+/* campos finais */
+label{
+  display:block;
+  font-size:11px;
+  color:var(--grafite);
+  margin-bottom:3px;
+}
+.campo{
+  width:100%;
+  font-family:inherit;
+  font-size:16px;
+  color:var(--tinta);
+  background:transparent;
+  border:none;
+  border-bottom:1.5px solid var(--tinta);
+  padding:5px 2px;
+  margin-bottom:16px;
+  border-radius:0;
+}
+.campo:focus{outline:none;border-bottom-width:3px;border-color:var(--vermelho)}
+.campo::placeholder{color:rgba(90,100,114,.5)}
+
+.botao{
+  font-family:"Anton",sans-serif;
+  font-size:17px;
+  letter-spacing:1px;
+  background:var(--tinta);
+  color:var(--via-rosa);
+  border:none;
+  border-radius:2px;
+  padding:14px 26px;
+  cursor:pointer;
+  transition:transform .12s, background .12s;
+}
+.botao:hover{background:var(--vermelho);transform:translateY(-2px)}
+.botao:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
+.botao.secundario{
+  background:transparent;
+  color:var(--tinta);
+  border:2px solid var(--tinta);
+  font-size:13px;
+  padding:10px 18px;
+}
+.botao.secundario:hover{background:var(--tinta);color:var(--via-rosa)}
+
+.erro{
+  color:var(--vermelho);
+  font-size:13px;
+  min-height:18px;
+  margin:0 0 10px;
+}
+
+/* resultado */
+.placar{
+  font-family:"Anton",sans-serif;
+  font-size:clamp(56px,20vw,92px);
+  line-height:.85;
+  margin:6px 0 2px;
+}
+.placar span{font-size:.42em}
+
+.veredito{
+  font-size:16px;
+  line-height:1.5;
+  margin:14px 0 6px;
+  font-weight:700;
+}
+.detalhe{
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--grafite);
+  margin:0 0 22px;
+}
+.assinatura{
+  margin-top:24px;
+  padding-top:12px;
+  border-top:1px dashed var(--grafite);
+  font-size:11px;
+  color:var(--grafite);
+  line-height:1.6;
+}
+
+.acoes{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:420px){
+  .ficha{padding:22px 16px 26px}
+  .conteudo{padding-left:18px}
+  .cabecalho{flex-direction:column;align-items:flex-start;gap:4px}
+  .protocolo{text-align:left}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;transition:none !important}
+  .carimbo.bate{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
+  .parecer.visivel{opacity:1;transform:none}
+}
 </style>
 </head>
 
 <body>
 
-<div class="card" id="app">
-
-<h1>Processo seletivo</h1>
-<p>para namorar com o Ruindade</p>
-
-<button onclick="comecar()">Começar teste</button>
-
+<div class="mesa">
+  <div class="ficha" id="ficha">
+    <div class="conteudo" id="app"></div>
+    <div class="carimbo" id="carimbo"></div>
+  </div>
 </div>
 
 <script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbx7-uXTyRUltIxBI_oCoGC-qtl64Qw9jPAsJaRGTQLiPGl6StHnx9P9kkWPp5xJ1DX8mg/exec";
 
-let perguntas = [
+const perguntas = [
+  {
+    pergunta:"Meu nome no seu celular tá salvo como:",
+    opcoes:[
+      {texto:"Fabrício", pontos:7, parecer:"Formal. Frio. Mas correto."},
+      {texto:"Algum apelido que eu nem sei que existe", pontos:10, parecer:"Preciso saber qual. Agora."},
+      {texto:"Não atender", pontos:3, parecer:"Ixi. Isso apareceu na ficha e não sai mais."}
+    ]
+  },
+  {
+    pergunta:"Chega um áudio meu de quatro minutos. Você:",
+    opcoes:[
+      {texto:"Escuta inteiro, duas vezes", pontos:10, parecer:"Existe gente assim? Contratada."},
+      {texto:"Acelera em 2x", pontos:8, parecer:"Eficiente. Ligeiramente ofensivo."},
+      {texto:"Lê a transcrição e responde 'kkkk sim'", pontos:5, parecer:"Ixi. Eu ia perceber."}
+    ]
+  },
+  {
+    pergunta:"Sobrou uma fatia de pizza. O que acontece:",
+    opcoes:[
+      {texto:"A gente divide no meio", pontos:9, parecer:"Justiça. Aborrecida, mas justiça."},
+      {texto:"Eu insisto pra você comer", pontos:8, parecer:"Você aceitou rápido demais."},
+      {texto:"Você pega antes de qualquer discussão", pontos:10, parecer:"Instinto. É disso que o setor gosta."}
+    ]
+  },
+  {
+    pergunta:"Você tem vinte reais e quarenta minutos. Nosso encontro é:",
+    opcoes:[
+      {texto:"Pastel na feira", pontos:10, parecer:"Melhor resposta do formulário inteiro."},
+      {texto:"Sorvete e andar sem rumo", pontos:9, parecer:"Romântico e barato. Perfeito."},
+      {texto:"Nada, remarca pra quando der", pontos:4, parecer:"Ixi. Quarenta minutos era o que eu tinha."}
+    ]
+  },
+  {
+    pergunta:"Alguém no rolê pergunta o que eu faço. Você responde:",
+    opcoes:[
+      {texto:"Ele é programador, tem uma empresa", pontos:10, parecer:"Prestou atenção. Anotado com carinho."},
+      {texto:"Ele mexe com computador", pontos:7, parecer:"Tecnicamente não está errado."},
+      {texto:"Sei lá, ele conserta impressora", pontos:4, parecer:"Ixi. Eu escutei isso daqui."}
+    ]
+  },
+  {
+    pergunta:"Passei o dia inteiro no código e esqueci de comer. Você:",
+    opcoes:[
+      {texto:"Aparece com comida sem avisar", pontos:10, parecer:"Anotado. Isso vale promoção."},
+      {texto:"Me xinga até eu levantar da cadeira", pontos:9, parecer:"Método agressivo. Funciona."},
+      {texto:"Posta no story 'solteira mesmo'", pontos:5, parecer:"Ixi. Merecido, mas ixi."}
+    ]
+  },
+  {
+    pergunta:"Eu te mostro um projeto que passei três dias fazendo. Você:",
+    opcoes:[
+      {texto:"Faz pergunta sobre como funciona", pontos:10, parecer:"Você não faz ideia do que acabou de ganhar."},
+      {texto:"Elogia mesmo sem entender nada", pontos:9, parecer:"Sincero o bastante. Aceito."},
+      {texto:"'Que legal' e volta pro celular", pontos:3, parecer:"Ixi. Três dias, hein."}
+    ]
+  },
+  {
+    pergunta:"Combinamos sete horas. São sete e vinte e cinco e eu não cheguei:",
+    opcoes:[
+      {texto:"Tranquilo, eu também ia atrasar", pontos:10, parecer:"Aliança de atrasados. Aprovada."},
+      {texto:"Manda um 'ok.' com ponto final", pontos:5, parecer:"O ponto final foi ouvido."},
+      {texto:"Já foi embora", pontos:2, parecer:"Ixi. Vinte e cinco minutos, moça."}
+    ]
+  },
+  {
+    pergunta:"Primeira vez no meu quarto. A primeira coisa que você julga:",
+    opcoes:[
+      {texto:"Se a cama tá arrumada", pontos:8, parecer:"Vou arrumar. Uma vez."},
+      {texto:"A quantidade de fio pendurado", pontos:10, parecer:"São necessários. Todos eles."},
+      {texto:"O cheiro", pontos:9, parecer:"Justo. Assustador, mas justo."}
+    ]
+  },
+  {
+    pergunta:"Tô de cama, doente, sem forças. Você:",
+    opcoes:[
+      {texto:"Aparece com remédio e comida", pontos:10, parecer:"Registrado em ata."},
+      {texto:"Manda áudio preocupada de dez em dez minutos", pontos:9, parecer:"Cansativo. Mas eu ia gostar."},
+      {texto:"'Toma um chá e melhora'", pontos:4, parecer:"Ixi. Frieza clínica detectada."}
+    ]
+  },
+  {
+    pergunta:"Foto minha no seu story acontece:",
+    opcoes:[
+      {texto:"Na primeira semana", pontos:10, parecer:"Corajosa. O setor respeita."},
+      {texto:"Só depois de uns meses", pontos:8, parecer:"Cautelosa. Também vale."},
+      {texto:"Nunca, minha vida é minha", pontos:6, parecer:"Privacidade. Ou vergonha. Vou descobrir."}
+    ]
+  },
+  {
+    pergunta:"O que te irrita mais numa pessoa:",
+    opcoes:[
+      {texto:"Mastigar de boca aberta", pontos:9, parecer:"Universal. Ninguém discorda."},
+      {texto:"Demorar pra responder", pontos:7, parecer:"Isso vai dar problema entre nós."},
+      {texto:"Pé gelado na cama", pontos:10, parecer:"Você já pensou nessa fase. Gostei."}
+    ]
+  }
+];
 
-{
-pergunta:"Se eu disser 'bora comer', você pensa em:",
-opcoes:[
-{texto:"comida", pontos:10},
-{texto:"lanche", pontos:6},
-{texto:"eu", pontos:8}
-]
-},
+const TOTAL = perguntas.length;
+const MAXIMO = TOTAL * 10;
 
-{
-pergunta:"Se eu demorar responder mensagem:",
-opcoes:[
-{texto:"espera", pontos:10},
-{texto:"manda mais mensagens", pontos:8},
-{texto:"me ignora quando eu responder", pontos:3}
-]
-},
+let atual = 0;
+let pontuacao = 0;
+let respostas = [];
+let travado = false;
 
-{
-pergunta:"Seu rolê ideal é:",
-opcoes:[
-{texto:"sair", pontos:7},
-{texto:"ficar em casa", pontos:10},
-{texto:"qualquer lugar", pontos:8}
-]
-},
+const app = document.getElementById("app");
+const ficha = document.getElementById("ficha");
+const carimbo = document.getElementById("carimbo");
 
-{
-pergunta:"Você gosta de:",
-opcoes:[
-{texto:"pizza", pontos:9},
-{texto:"hambúrguer", pontos:7},
-{texto:"comida", pontos:10}
-]
-},
+function protocolo(){
+  const d = new Date();
+  return String(d.getDate()).padStart(2,"0") + String(d.getMonth()+1).padStart(2,"0") + "-" + String(Math.floor(Math.random()*900)+100);
+}
+const NUM_PROTOCOLO = protocolo();
 
-{
-pergunta:"Nível de ciúmes:",
-opcoes:[
-{texto:"tranquilo", pontos:10},
-{texto:"normal", pontos:7},
-{texto:"FBI ", pontos:2}
-]
-},
-
-{
-pergunta:"Em uma discussão você:",
-opcoes:[
-{texto:"conversa", pontos:10},
-{texto:"fica quieta", pontos:6},
-{texto:"manda indireta", pontos:2}
-]
-},
-
-{
-pergunta:"Eu conto uma piada ruim, você:",
-opcoes:[
-{texto:"ri", pontos:10},
-{texto:"finge que ri", pontos:7},
-{texto:"troca de assunto", pontos:4}
-]
-},
-
-{
-pergunta:"Se eu quiser ver filme:",
-opcoes:[
-{texto:"vemos o filme", pontos:8},
-{texto:"dormimos no meio", pontos:10},
-{texto:"ignoramos o filme", pontos:6}
-]
-},
-
-{
-pergunta:"Você ronca?",
-opcoes:[
-{texto:"não", pontos:10},
-{texto:"um pouco", pontos:7},
-{texto:"igual um trator", pontos:3}
-]
-},
-
-{
-pergunta:"Se eu mandar 'confia', você:",
-opcoes:[
-{texto:"confia", pontos:10},
-{texto:"desconfia", pontos:6},
-{texto:"só ignora", pontos:2}
-]
+function cabecalho(){
+  return `
+    <div class="cabecalho">
+      <div class="orgao">Departamento de Relacionamentos<br>Setor de Triagem — Fabrício</div>
+      <div class="protocolo">Protocolo ${NUM_PROTOCOLO}<br>Vagas: 1</div>
+    </div>`;
 }
 
-]
-
-let atual = 0
-let respostas = []
-let pontuacao = 0
+function abrir(){
+  app.innerHTML = `
+    ${cabecalho()}
+    <h1>Ficha de candidatura</h1>
+    <p class="subtitulo">Processo seletivo para namorar comigo. ${TOTAL} etapas, sem recurso, sem volta.</p>
+    <p class="aviso">Cada resposta é carimbada na hora. Responda com sinceridade — o setor percebe quando não é.</p>
+    <button class="botao" onclick="comecar()">Iniciar triagem</button>
+    <div class="assinatura">Preenchimento estimado: 2 minutos.<br>O resultado é definitivo e levemente injusto.</div>
+  `;
+}
 
 function comecar(){
-
-document.getElementById("app").innerHTML = `
-<div class="progresso">
-<div class="barra" id="barra"></div>
-</div>
-
-<h2 id="pergunta"></h2>
-
-<div class="opcoes" id="opcoes"></div>
-`
-
-mostrarPergunta()
-
+  atual = 0; pontuacao = 0; respostas = []; travado = false;
+  render();
 }
 
-function mostrarPergunta(){
+function render(){
+  const p = perguntas[atual];
+  let quadros = "";
+  for(let i=0;i<TOTAL;i++){
+    const cls = i < atual ? "quadro feito" : (i === atual ? "quadro atual" : "quadro");
+    quadros += `<div class="${cls}"></div>`;
+  }
 
-let p = perguntas[atual]
+  app.innerHTML = `
+    ${cabecalho()}
+    <div class="etapas">${quadros}</div>
+    <div class="contador">Etapa ${atual+1} de ${TOTAL} · Protocolo ${NUM_PROTOCOLO}</div>
+    <p class="pergunta"><span class="numero-item">${String(atual+1).padStart(2,"0")}.</span>${p.pergunta}</p>
+    <div class="opcoes" id="opcoes"></div>
+    <p class="parecer" id="parecer"></p>
+  `;
 
-document.getElementById("pergunta").innerText = p.pergunta
-
-let html=""
-
-p.opcoes.forEach(op=>{
-html += `<button onclick="responder(${op.pontos})">${op.texto}</button>`
-})
-
-document.getElementById("opcoes").innerHTML = html
-
-let progresso = (atual/perguntas.length)*100
-document.getElementById("barra").style.width = progresso+"%"
-
+  const box = document.getElementById("opcoes");
+  p.opcoes.forEach((op, i) => {
+    const b = document.createElement("button");
+    b.className = "opcao";
+    b.textContent = op.texto;
+    b.onclick = () => responder(i);
+    box.appendChild(b);
+  });
 }
 
-function responder(pontos){
+function responder(indice){
+  if(travado) return;
+  travado = true;
 
-pontuacao += pontos
-atual++
+  const p = perguntas[atual];
+  const op = p.opcoes[indice];
 
-if(atual < perguntas.length){
-mostrarPergunta()
-}else{
-formularioFinal()
+  pontuacao += op.pontos;
+  respostas.push({ pergunta:p.pergunta, resposta:op.texto, pontos:op.pontos });
+
+  const botoes = document.querySelectorAll(".opcao");
+  botoes.forEach((b,i) => {
+    b.disabled = true;
+    if(i === indice) b.classList.add("escolhida");
+  });
+
+  let selo, classe;
+  if(op.pontos >= 9){ selo = "Aprovado"; classe = "aprovado"; }
+  else if(op.pontos >= 6){ selo = "Sob análise"; classe = "analise"; }
+  else { selo = "Reprovado"; classe = "reprovado"; }
+
+  carimbo.textContent = selo;
+  carimbo.className = "carimbo " + classe;
+  void carimbo.offsetWidth;
+  carimbo.classList.add("bate");
+
+  if(classe === "reprovado"){
+    ficha.classList.add("tremor");
+    setTimeout(()=>ficha.classList.remove("tremor"), 320);
+  }
+
+  const parecer = document.getElementById("parecer");
+  parecer.textContent = "— " + op.parecer;
+  parecer.classList.add("visivel");
+
+  setTimeout(() => {
+    carimbo.className = "carimbo";
+    atual++;
+    travado = false;
+    if(atual < TOTAL) render();
+    else identificacao();
+  }, 1500);
 }
 
-}
+function identificacao(){
+  app.innerHTML = `
+    ${cabecalho()}
+    <h1>Identificação</h1>
+    <p class="subtitulo">Triagem concluída. Agora preciso saber quem é você — sem isso a ficha não vale.</p>
 
-function formularioFinal(){
+    <label for="nome">Nome</label>
+    <input class="campo" id="nome" placeholder="Como te chamam" autocomplete="off">
 
-document.getElementById("app").innerHTML = `
+    <label for="insta">Instagram</label>
+    <input class="campo" id="insta" placeholder="@" autocomplete="off">
 
-<h2>Última etapa 👀</h2>
+    <label for="cidade">Cidade</label>
+    <input class="campo" id="cidade" placeholder="Onde você mora" autocomplete="off">
 
-<p>Se chegou até aqui, preencha:</p>
-
-<input id="nome" placeholder="Nome"><br>
-<input id="insta" placeholder="Instagram"><br>
-<input id="cidade" placeholder="Cidade"><br>
-
-<br>
-
-<button onclick="enviar()">Enviar candidatura</button>
-
-`
+    <p class="erro" id="erro"></p>
+    <button class="botao" id="btnEnviar" onclick="enviar()">Entregar ficha</button>
+  `;
 }
 
 function enviar(){
+  const nome = document.getElementById("nome").value.trim();
+  const insta = document.getElementById("insta").value.trim();
+  const cidade = document.getElementById("cidade").value.trim();
+  const erro = document.getElementById("erro");
 
-let nome = document.getElementById("nome").value
-let insta = document.getElementById("insta").value
-let cidade = document.getElementById("cidade").value
+  if(!nome || !insta || !cidade){
+    erro.textContent = "Falta preencher. O setor não aceita ficha incompleta.";
+    ficha.classList.add("tremor");
+    setTimeout(()=>ficha.classList.remove("tremor"), 320);
+    return;
+  }
 
-if(nome === "" || insta === "" || cidade === ""){
-alert("Preencha todos os campos antes de enviar 😡")
-return
+  const btn = document.getElementById("btnEnviar");
+  btn.disabled = true;
+  btn.textContent = "Protocolando...";
+
+  const porcentagem = Math.round((pontuacao / MAXIMO) * 100);
+
+  fetch(ENDPOINT, {
+    method:"POST",
+    body: JSON.stringify({ nome, insta, cidade, pontuacao, compatibilidade: porcentagem, respostas })
+  }).catch(()=>{});
+
+  setTimeout(()=>resultado(nome, porcentagem), 700);
 }
 
-let maximo = perguntas.length * 10
-let porcentagem = Math.round((pontuacao / maximo) * 100)
+function resultado(nome, porcentagem){
+  let selo, classe, veredito, detalhe;
 
-console.log("Quiz:",respostas)
-console.log("Pessoa:",nome,insta,cidade)
+  if(porcentagem < 45){
+    selo = "Reprovado"; classe = "reprovado";
+    veredito = "Candidatura indeferida.";
+    detalhe = "Seu currículo fica no banco de talentos. A gente pode ser amigo, e olha que isso já é bastante coisa.";
+  } else if(porcentagem < 70){
+    selo = "Sob análise"; classe = "analise";
+    veredito = "Passou pra segunda fase.";
+    detalhe = "Tem potencial, mas algumas respostas acenderam uma luzinha amarela aqui. Vou querer conversar melhor.";
+  } else if(porcentagem < 90){
+    selo = "Aprovado"; classe = "aprovado";
+    veredito = "Aprovada na triagem.";
+    detalhe = "Compatibilidade alta o bastante pra eu te chamar no direct. Prepara o assunto.";
+  } else {
+    selo = "Contratada"; classe = "aprovado";
+    veredito = "Contratada. Quando você pode começar?";
+    detalhe = "Esse número quase não aparece. Ou você é perfeita, ou respondeu tudo pensando em me agradar. Nos dois casos, funcionou.";
+  }
 
-let mensagem=""
+  app.innerHTML = `
+    ${cabecalho()}
+    <div class="contador">Parecer final · Protocolo ${NUM_PROTOCOLO}</div>
+    <div class="placar">${porcentagem}<span>%</span></div>
+    <div class="contador">de compatibilidade</div>
+    <p class="veredito">${nome}, ${veredito}</p>
+    <p class="detalhe">${detalhe}</p>
+    <div class="acoes">
+      <button class="botao secundario" onclick="copiar(${porcentagem})">Copiar resultado</button>
+      <button class="botao secundario" onclick="abrir()">Refazer</button>
+    </div>
+    <div class="assinatura">
+      Avaliador: Fabrício<br>
+      Este parecer não admite recurso, choro ou áudio de sete minutos.
+    </div>
+  `;
 
-if(porcentagem < 40){
-mensagem = "🚫 Compatibilidade baixa. vamos ser amigos pô."
+  carimbo.textContent = selo;
+  carimbo.className = "carimbo " + classe;
+  void carimbo.offsetWidth;
+  carimbo.classList.add("bate");
+  setTimeout(()=>{ carimbo.className = "carimbo"; }, 3000);
 }
-else if(porcentagem < 70){
-mensagem = "🙂 Compatibilidade média. será?."
-}
-else{
-mensagem = "💍 Alta compatibilidade. vou te chamar no insta."
-}
 
-fetch("https://script.google.com/macros/s/AKfycbx7-uXTyRUltIxBI_oCoGC-qtl64Qw9jPAsJaRGTQLiPGl6StHnx9P9kkWPp5xJ1DX8mg/exec",{
-method:"POST",
-body:JSON.stringify({
-nome:nome,
-insta:insta,
-cidade:cidade,
-pontuacao:pontuacao,
-compatibilidade:porcentagem
-})
-})
-
-document.getElementById("app").innerHTML = `
-<h2>Obrigado ${nome}</h2>
-<p>Compatibilidade amorosa: ${porcentagem}%</p>
-<p>${mensagem}</p>
-`
+function copiar(porcentagem){
+  const texto = `Fiz o processo seletivo pra namorar com o Fabrício e deu ${porcentagem}% de compatibilidade. Faz o seu: ${location.href}`;
+  navigator.clipboard.writeText(texto).then(()=>{
+    alert("Copiado. Agora manda no grupo.");
+  }).catch(()=>{
+    prompt("Copia aí:", texto);
+  });
 }
 
+abrir();
 </script>
 
 </body>
