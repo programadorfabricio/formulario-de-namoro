@@ -587,42 +587,131 @@ function responder(indice){
   }, 1500);
 }
 
+const DDDS = [11,12,13,14,15,16,17,18,19,21,22,24,27,28,31,32,33,34,35,37,38,41,42,43,44,45,46,47,48,49,51,53,54,55,61,62,63,64,65,66,67,68,69,71,73,74,75,77,79,81,82,83,84,85,86,87,88,89,91,92,93,94,95,96,97,98,99];
+
+function pareceDigitacaoAleatoria(txt){
+  const t = txt.toLowerCase().replace(/[^a-zà-ú]/g,"");
+  if(t.length < 2) return true;
+  if(!/[aeiouà-ú]/.test(t)) return true;                 // sem nenhuma vogal
+  if(/(.)\1\1/.test(t)) return true;                      // tres letras iguais seguidas
+  const mash = ["asd","sdf","dfg","qwe","wer","ert","zxc","xcv","jkl","hjk","teste","test","aaa","abc"];
+  if(mash.some(m => t.includes(m))) return true;
+  const vogais = (t.match(/[aeiouà-ú]/g)||[]).length;
+  if(vogais / t.length < 0.2) return true;                // quase so consoante
+  for(let tam = 2; tam <= Math.floor(t.length/2); tam++){  // pedaco repetido: dawdawdaw
+    if(t.length % tam === 0 && t === t.slice(0,tam).repeat(t.length/tam)) return true;
+  }
+  return false;
+}
+
+function limparInsta(v){
+  return v.trim().replace(/^@+/,"").replace(/^https?:\/\/(www\.)?instagram\.com\//i,"").replace(/\/+$/,"").trim();
+}
+
+function soDigitos(v){ return (v||"").replace(/\D/g,""); }
+
+function formatarZap(v){
+  const d = soDigitos(v).slice(0,11);
+  if(d.length <= 2) return d.length ? "(" + d : "";
+  if(d.length <= 6) return "(" + d.slice(0,2) + ") " + d.slice(2);
+  if(d.length <= 10) return "(" + d.slice(0,2) + ") " + d.slice(2,6) + "-" + d.slice(6);
+  return "(" + d.slice(0,2) + ") " + d.slice(2,7) + "-" + d.slice(7);
+}
+
+function zapValido(v){
+  const d = soDigitos(v);
+  if(d.length !== 11) return false;
+  if(!DDDS.includes(parseInt(d.slice(0,2),10))) return false;
+  if(d[2] !== "9") return false;
+  if(/^(\d)\1{10}$/.test(d)) return false;                // 99999999999
+  if(d.slice(2) === "912345678") return false;
+  return true;
+}
+
+let dadosPendentes = null;
+
 function identificacao(){
   app.innerHTML = `
     ${cabecalho()}
     <h1>Identificação</h1>
     <p class="subtitulo">Triagem concluída. Agora preciso saber quem é você — sem isso a ficha não vale.</p>
+    <p class="aviso">Dado inventado é eliminação automática. O setor confere.</p>
 
     <label for="nome">Nome</label>
-    <input class="campo" id="nome" placeholder="Como te chamam" autocomplete="off">
+    <input class="campo" id="nome" placeholder="Como te chamam" autocomplete="given-name" maxlength="40">
 
-    <label for="insta">Instagram</label>
-    <input class="campo" id="insta" placeholder="@" autocomplete="off">
+    <label for="zap">WhatsApp</label>
+    <input class="campo" id="zap" placeholder="(19) 90000-0000" inputmode="numeric" autocomplete="tel" maxlength="16">
 
-    <label for="zap">WhatsApp <span style="text-transform:none">(opcional, se preferir por aqui)</span></label>
-    <input class="campo" id="zap" placeholder="(00) 00000-0000" inputmode="tel" autocomplete="off">
+    <label for="insta">Instagram <span style="text-transform:none">(opcional)</span></label>
+    <input class="campo" id="insta" placeholder="seu.usuario" autocomplete="off" maxlength="30">
 
     <label for="cidade">Cidade</label>
-    <input class="campo" id="cidade" placeholder="Onde você mora" autocomplete="off">
+    <input class="campo" id="cidade" placeholder="Onde você mora" autocomplete="address-level2" maxlength="40">
 
     <p class="erro" id="erro"></p>
-    <button class="botao" id="btnEnviar" onclick="enviar()">Entregar ficha</button>
+    <button class="botao" id="btnEnviar" onclick="conferir()">Continuar</button>
+  `;
+
+  const campoZap = document.getElementById("zap");
+  campoZap.addEventListener("input", () => {
+    const pos = campoZap.selectionStart === campoZap.value.length;
+    campoZap.value = formatarZap(campoZap.value);
+    if(pos) campoZap.setSelectionRange(campoZap.value.length, campoZap.value.length);
+  });
+}
+
+function recusar(msg){
+  const erro = document.getElementById("erro");
+  erro.textContent = msg;
+  ficha.classList.add("tremor");
+  setTimeout(()=>ficha.classList.remove("tremor"), 320);
+}
+
+function conferir(){
+  const nome = document.getElementById("nome").value.trim().replace(/\s+/g," ");
+  const zap = document.getElementById("zap").value.trim();
+  const insta = limparInsta(document.getElementById("insta").value);
+  const cidade = document.getElementById("cidade").value.trim().replace(/\s+/g," ");
+
+  if(!nome || !zap || !cidade) return recusar("Falta preencher. O setor não aceita ficha incompleta.");
+
+  if(nome.length < 2 || !/^[A-Za-zÀ-ÿ' -]+$/.test(nome) || pareceDigitacaoAleatoria(nome))
+    return recusar("Esse nome não convenceu ninguém aqui. Escreve o de verdade.");
+
+  if(!zapValido(zap))
+    return recusar("Esse número não existe. Onze dígitos, com DDD e o 9 na frente.");
+
+  if(cidade.length < 3 || !/^[A-Za-zÀ-ÿ' .-]+$/.test(cidade) || pareceDigitacaoAleatoria(cidade))
+    return recusar("Que cidade é essa? Não achei no mapa.");
+
+  if(insta && (!/^[A-Za-z0-9._]{2,30}$/.test(insta) || pareceDigitacaoAleatoria(insta)))
+    return recusar("Esse @ não parece real. Corrige ou deixa em branco.");
+
+  dadosPendentes = { nome, zap, insta, cidade };
+
+  app.innerHTML = `
+    ${cabecalho()}
+    <h1>Confere aí</h1>
+    <p class="subtitulo">Última chance de corrigir. Depois disso a ficha vai pro arquivo.</p>
+
+    <div style="font-size:15px;line-height:2;margin-bottom:22px">
+      <div><span style="color:var(--grafite);font-size:11px">NOME</span><br><strong>${nome}</strong></div>
+      <div><span style="color:var(--grafite);font-size:11px">WHATSAPP</span><br><strong>${zap}</strong></div>
+      ${insta ? `<div><span style="color:var(--grafite);font-size:11px">INSTAGRAM</span><br><strong>@${insta}</strong></div>` : ""}
+      <div><span style="color:var(--grafite);font-size:11px">CIDADE</span><br><strong>${cidade}</strong></div>
+    </div>
+
+    <div class="acoes">
+      <button class="botao" id="btnEnviar" onclick="enviar()">Tá certo, entregar</button>
+      <button class="botao secundario" onclick="identificacao()">Corrigir</button>
+    </div>
   `;
 }
 
 function enviar(){
-  const nome = document.getElementById("nome").value.trim();
-  const insta = document.getElementById("insta").value.trim();
-  const zap = document.getElementById("zap").value.trim();
-  const cidade = document.getElementById("cidade").value.trim();
-  const erro = document.getElementById("erro");
-
-  if(!nome || !insta || !cidade){
-    erro.textContent = "Falta preencher. O setor não aceita ficha incompleta.";
-    ficha.classList.add("tremor");
-    setTimeout(()=>ficha.classList.remove("tremor"), 320);
-    return;
-  }
+  if(!dadosPendentes) return;
+  const { nome, zap, insta, cidade } = dadosPendentes;
 
   const btn = document.getElementById("btnEnviar");
   btn.disabled = true;
