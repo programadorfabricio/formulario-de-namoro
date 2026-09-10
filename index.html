@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Candidatura para namorar com o Fabrício</title>
+<meta name="description" content="Processo seletivo para namorar com o Fabrício. 12 etapas, sem recurso.">
+<meta property="og:title" content="Candidatura para namorar com o Fabrício">
+<meta property="og:description" content="12 etapas. Sem recurso. Descubra sua compatibilidade.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,231 +21,93 @@
   --vermelho:#D42D3D;
   --verde:#1F7A4D;
   --grafite:#5A6472;
+  --fonte-titulo:"Anton", Impact, "Arial Black", sans-serif;
+  --fonte-corpo:"Courier Prime", "Courier New", ui-monospace, monospace;
 }
-
 *{box-sizing:border-box}
-
 html,body{height:100%}
-
 body{
   margin:0;
   background:var(--mesa);
   background-image:
     repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 44px),
     repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 44px);
-  font-family:"Courier Prime", ui-monospace, monospace;
+  font-family:var(--fonte-corpo);
   color:var(--tinta);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex; align-items:center; justify-content:center;
   padding:24px 16px;
 }
-
-.mesa{
-  position:relative;
-  width:100%;
-  max-width:520px;
-}
-
-/* via amarela aparecendo atrás */
+.mesa{position:relative;width:100%;max-width:520px}
 .mesa::before{
-  content:"";
-  position:absolute;
-  inset:14px -10px -14px 12px;
-  background:var(--via-amarela);
-  border-radius:2px;
-  transform:rotate(1.6deg);
+  content:"";position:absolute;inset:14px -10px -14px 12px;
+  background:var(--via-amarela);border-radius:2px;transform:rotate(1.6deg);
   box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
-
 .ficha{
-  position:relative;
-  background:var(--via-rosa);
-  border-radius:2px;
-  padding:26px 24px 30px;
-  transform:rotate(-.8deg);
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-  overflow:hidden;
+  position:relative;background:var(--via-rosa);border-radius:2px;
+  padding:26px 24px 30px;transform:rotate(-.8deg);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);overflow:hidden;
 }
-
-/* furos de fichário */
 .ficha::before{
-  content:"";
-  position:absolute;
-  left:0; top:0; bottom:0;
-  width:26px;
+  content:"";position:absolute;left:0;top:0;bottom:0;width:26px;
   background:
     radial-gradient(circle at 13px 16%, var(--mesa) 5px, transparent 5px),
     radial-gradient(circle at 13px 50%, var(--mesa) 5px, transparent 5px),
     radial-gradient(circle at 13px 84%, var(--mesa) 5px, transparent 5px);
   opacity:.35;
 }
-
 .conteudo{padding-left:22px}
-
 .cabecalho{
-  border-bottom:2px solid var(--tinta);
-  padding-bottom:10px;
-  margin-bottom:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:12px;
+  border-bottom:2px solid var(--tinta);padding-bottom:10px;margin-bottom:20px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
 }
+.orgao{font-size:11px;letter-spacing:.5px;line-height:1.4;color:var(--grafite)}
+.protocolo{font-size:11px;color:var(--grafite);text-align:right;white-space:nowrap}
+h1{font-family:var(--fonte-titulo);font-weight:400;font-size:clamp(30px,8vw,44px);line-height:.92;margin:0 0 6px;letter-spacing:.5px}
+.subtitulo{font-size:14px;line-height:1.5;margin:0 0 22px;max-width:38ch}
+.aviso{font-size:12px;color:var(--grafite);border-left:3px solid var(--vermelho);padding-left:10px;margin:0 0 24px;line-height:1.5}
 
-.orgao{
-  font-size:11px;
-  letter-spacing:.5px;
-  line-height:1.4;
-  color:var(--grafite);
+/* foto 3x4 grampeada */
+.bloco-foto{display:flex;gap:16px;align-items:flex-start;margin:0 0 22px}
+.foto3x4{
+  position:relative;flex:0 0 108px;width:108px;height:144px;
+  background:#e4d2d6;border:1px solid rgba(22,38,94,.25);
+  transform:rotate(2.2deg);box-shadow:2px 3px 8px rgba(0,0,0,.25);
 }
+.foto3x4 img{width:100%;height:100%;object-fit:cover;display:block}
+.foto3x4::after{
+  content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(-8deg);
+  width:26px;height:9px;background:linear-gradient(180deg,#c9ccd4,#8b909c);
+  border-radius:1px;box-shadow:0 1px 3px rgba(0,0,0,.4);
+}
+.legenda-foto{font-size:12.5px;line-height:1.5;color:var(--grafite);padding-top:4px}
+.legenda-foto strong{color:var(--tinta);font-size:14px}
 
-.protocolo{
-  font-size:11px;
-  color:var(--grafite);
-  text-align:right;
-  white-space:nowrap;
-}
-
-h1{
-  font-family:"Anton", Impact, sans-serif;
-  font-weight:400;
-  font-size:clamp(30px,8vw,44px);
-  line-height:.92;
-  margin:0 0 6px;
-  letter-spacing:.5px;
-}
-
-.subtitulo{
-  font-size:14px;
-  line-height:1.5;
-  margin:0 0 26px;
-  max-width:38ch;
-}
-
-.aviso{
-  font-size:12px;
-  color:var(--grafite);
-  border-left:3px solid var(--vermelho);
-  padding-left:10px;
-  margin:0 0 26px;
-  line-height:1.5;
-}
-
-/* checklist de etapas */
-.etapas{
-  display:flex;
-  gap:5px;
-  margin-bottom:6px;
-  flex-wrap:wrap;
-}
-.quadro{
-  width:16px;height:16px;
-  border:1.5px solid var(--tinta);
-  border-radius:1px;
-  position:relative;
-  background:transparent;
-}
-.quadro.feito::after{
-  content:"×";
-  position:absolute;
-  inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Anton",sans-serif;
-  font-size:15px;
-  color:var(--vermelho);
-  line-height:1;
-}
+.etapas{display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap}
+.quadro{width:16px;height:16px;border:1.5px solid var(--tinta);border-radius:1px;position:relative}
+.quadro.feito::after{content:"×";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fonte-titulo);font-size:15px;color:var(--vermelho);line-height:1}
 .quadro.atual{border-color:var(--vermelho);border-width:2.5px}
-
-.contador{
-  font-size:11px;
-  color:var(--grafite);
-  margin-bottom:22px;
-}
-
-.pergunta{
-  font-size:18px;
-  line-height:1.4;
-  font-weight:700;
-  margin:0 0 18px;
-  min-height:50px;
-}
-
-.numero-item{
-  font-family:"Anton",sans-serif;
-  color:var(--vermelho);
-  margin-right:8px;
-}
-
+.contador{font-size:11px;color:var(--grafite);margin-bottom:22px}
+.pergunta{font-size:18px;line-height:1.4;font-weight:700;margin:0 0 18px;min-height:50px}
+.numero-item{font-family:var(--fonte-titulo);color:var(--vermelho);margin-right:8px}
 .opcoes{display:flex;flex-direction:column;gap:9px}
-
 .opcao{
-  font-family:inherit;
-  font-size:15px;
-  text-align:left;
-  background:rgba(255,255,255,.5);
-  border:1.5px solid var(--tinta);
-  border-radius:1px;
-  color:var(--tinta);
-  padding:12px 14px 12px 40px;
-  cursor:pointer;
-  position:relative;
-  transition:background .12s, transform .12s;
+  font-family:inherit;font-size:15px;text-align:left;background:rgba(255,255,255,.5);
+  border:1.5px solid var(--tinta);border-radius:1px;color:var(--tinta);
+  padding:12px 14px 12px 40px;cursor:pointer;position:relative;transition:background .12s, transform .12s;
 }
-.opcao::before{
-  content:"";
-  position:absolute;
-  left:13px; top:50%;
-  transform:translateY(-50%);
-  width:14px;height:14px;
-  border:1.5px solid var(--tinta);
-  border-radius:1px;
-}
+.opcao::before{content:"";position:absolute;left:13px;top:50%;transform:translateY(-50%);width:14px;height:14px;border:1.5px solid var(--tinta);border-radius:1px}
 .opcao:hover:not(:disabled){background:#fff;transform:translateX(3px)}
 .opcao:focus-visible{outline:3px solid var(--vermelho);outline-offset:2px}
 .opcao:disabled{cursor:default;opacity:.55}
 .opcao.escolhida{opacity:1;background:#fff}
-.opcao.escolhida::before{
-  content:"×";
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Anton",sans-serif;
-  color:var(--vermelho);
-  font-size:16px;
-  line-height:1;
-}
-
-/* parecer manuscrito */
-.parecer{
-  margin-top:16px;
-  min-height:22px;
-  color:var(--vermelho);
-  font-style:italic;
-  font-size:14.5px;
-  line-height:1.4;
-  opacity:0;
-  transform:translateY(6px) rotate(-1deg);
-}
-.parecer.visivel{
-  opacity:1;
-  transform:translateY(0) rotate(-1deg);
-  transition:opacity .25s ease .35s, transform .25s ease .35s;
-}
-
-/* carimbo */
+.opcao.escolhida::before{content:"×";display:flex;align-items:center;justify-content:center;font-family:var(--fonte-titulo);color:var(--vermelho);font-size:16px;line-height:1}
+.parecer{margin-top:16px;min-height:22px;color:var(--vermelho);font-style:italic;font-size:14.5px;line-height:1.4;opacity:0;transform:translateY(6px) rotate(-1deg)}
+.parecer.visivel{opacity:1;transform:translateY(0) rotate(-1deg);transition:opacity .25s ease .35s, transform .25s ease .35s}
 .carimbo{
-  position:absolute;
-  left:50%; top:46%;
-  z-index:5;
-  font-family:"Anton",sans-serif;
-  font-size:clamp(26px,7vw,38px);
-  letter-spacing:2px;
-  padding:8px 20px;
-  border:5px double currentColor;
-  border-radius:4px;
-  pointer-events:none;
-  opacity:0;
-  white-space:nowrap;
+  position:absolute;left:50%;top:46%;z-index:5;font-family:var(--fonte-titulo);
+  font-size:clamp(26px,7vw,38px);letter-spacing:2px;padding:8px 20px;
+  border:5px double currentColor;border-radius:4px;pointer-events:none;opacity:0;white-space:nowrap;
   transform:translate(-50%,-50%) rotate(-14deg) scale(2.6);
 }
 .carimbo.bate{animation:bater .55s cubic-bezier(.2,1.4,.4,1) forwards}
@@ -255,7 +120,6 @@ h1{
 .carimbo.aprovado{color:var(--verde)}
 .carimbo.analise{color:#B4761A}
 .carimbo.reprovado{color:var(--vermelho)}
-
 .ficha.tremor{animation:tremer .3s}
 @keyframes tremer{
   0%,100%{transform:rotate(-.8deg)}
@@ -263,98 +127,32 @@ h1{
   50%{transform:rotate(-.8deg) translate(3px,-2px)}
   75%{transform:rotate(-.8deg) translate(-2px,1px)}
 }
-
-/* campos finais */
-label{
-  display:block;
-  font-size:11px;
-  color:var(--grafite);
-  margin-bottom:3px;
-}
-.campo{
-  width:100%;
-  font-family:inherit;
-  font-size:16px;
-  color:var(--tinta);
-  background:transparent;
-  border:none;
-  border-bottom:1.5px solid var(--tinta);
-  padding:5px 2px;
-  margin-bottom:16px;
-  border-radius:0;
-}
+label{display:block;font-size:11px;color:var(--grafite);margin-bottom:3px}
+.campo{width:100%;font-family:inherit;font-size:16px;color:var(--tinta);background:transparent;border:none;border-bottom:1.5px solid var(--tinta);padding:5px 2px;margin-bottom:16px;border-radius:0}
 .campo:focus{outline:none;border-bottom-width:3px;border-color:var(--vermelho)}
 .campo::placeholder{color:rgba(90,100,114,.5)}
-
-.botao{
-  font-family:"Anton",sans-serif;
-  font-size:17px;
-  letter-spacing:1px;
-  background:var(--tinta);
-  color:var(--via-rosa);
-  border:none;
-  border-radius:2px;
-  padding:14px 26px;
-  cursor:pointer;
-  transition:transform .12s, background .12s;
-}
+.botao{font-family:var(--fonte-titulo);font-size:17px;letter-spacing:1px;background:var(--tinta);color:var(--via-rosa);border:none;border-radius:2px;padding:14px 26px;cursor:pointer;transition:transform .12s, background .12s}
 .botao:hover{background:var(--vermelho);transform:translateY(-2px)}
 .botao:focus-visible{outline:3px solid var(--vermelho);outline-offset:3px}
-.botao.secundario{
-  background:transparent;
-  color:var(--tinta);
-  border:2px solid var(--tinta);
-  font-size:13px;
-  padding:10px 18px;
-}
+.botao:disabled{opacity:.6;cursor:default;transform:none}
+.botao.secundario{background:transparent;color:var(--tinta);border:2px solid var(--tinta);font-size:13px;padding:10px 18px}
 .botao.secundario:hover{background:var(--tinta);color:var(--via-rosa)}
-
-.erro{
-  color:var(--vermelho);
-  font-size:13px;
-  min-height:18px;
-  margin:0 0 10px;
-}
-
-/* resultado */
-.placar{
-  font-family:"Anton",sans-serif;
-  font-size:clamp(56px,20vw,92px);
-  line-height:.85;
-  margin:6px 0 2px;
-}
+.erro{color:var(--vermelho);font-size:13px;min-height:18px;margin:0 0 10px}
+.placar{font-family:var(--fonte-titulo);font-size:clamp(56px,20vw,92px);line-height:.85;margin:6px 0 2px}
 .placar span{font-size:.42em}
-
-.veredito{
-  font-size:16px;
-  line-height:1.5;
-  margin:14px 0 6px;
-  font-weight:700;
-}
-.detalhe{
-  font-size:13.5px;
-  line-height:1.55;
-  color:var(--grafite);
-  margin:0 0 22px;
-}
-.assinatura{
-  margin-top:24px;
-  padding-top:12px;
-  border-top:1px dashed var(--grafite);
-  font-size:11px;
-  color:var(--grafite);
-  line-height:1.6;
-}
-
+.veredito{font-size:16px;line-height:1.5;margin:14px 0 6px;font-weight:700}
+.detalhe{font-size:13.5px;line-height:1.55;color:var(--grafite);margin:0 0 22px}
+.assinatura{margin-top:24px;padding-top:12px;border-top:1px dashed var(--grafite);font-size:11px;color:var(--grafite);line-height:1.6}
 .acoes{display:flex;gap:10px;flex-wrap:wrap}
-
+.selo-fila{display:inline-block;border:1.5px dashed var(--vermelho);color:var(--vermelho);font-size:11px;padding:4px 9px;margin-bottom:16px;letter-spacing:.5px}
 @media (max-width:420px){
   .ficha{padding:22px 16px 26px}
   .conteudo{padding-left:18px}
   .cabecalho{flex-direction:column;align-items:flex-start;gap:4px}
   .protocolo{text-align:left}
+  .bloco-foto{gap:12px}
+  .foto3x4{flex:0 0 88px;width:88px;height:118px}
 }
-
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important;transition:none !important}
   .carimbo.bate{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
@@ -362,19 +160,17 @@ label{
 }
 </style>
 </head>
-
 <body>
-
 <div class="mesa">
   <div class="ficha" id="ficha">
     <div class="conteudo" id="app"></div>
     <div class="carimbo" id="carimbo"></div>
   </div>
 </div>
-
+<canvas id="telaImagem" width="1080" height="1350" style="display:none"></canvas>
 <script>
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbx7-uXTyRUltIxBI_oCoGC-qtl64Qw9jPAsJaRGTQLiPGl6StHnx9P9kkWPp5xJ1DX8mg/exec";
-
+const FOTO = "foto.jpg";
 const perguntas = [
   {
     pergunta:"Filme começando. Você coloca:",
@@ -473,24 +269,32 @@ const perguntas = [
     ]
   }
 ];
-
 const TOTAL = perguntas.length;
 const MAXIMO = TOTAL * 10;
 
-let atual = 0;
-let pontuacao = 0;
-let respostas = [];
-let travado = false;
+let atual = 0, pontuacao = 0, respostas = [], travado = false;
+let dadosPendentes = null, ultimoResultado = null, posicaoFila = null;
 
 const app = document.getElementById("app");
 const ficha = document.getElementById("ficha");
 const carimbo = document.getElementById("carimbo");
 
-function protocolo(){
-  const d = new Date();
-  return String(d.getDate()).padStart(2,"0") + String(d.getMonth()+1).padStart(2,"0") + "-" + String(Math.floor(Math.random()*900)+100);
+const NUM_PROTOCOLO = (()=>{ const d=new Date();
+  return String(d.getDate()).padStart(2,"0")+String(d.getMonth()+1).padStart(2,"0")+"-"+String(Math.floor(Math.random()*900)+100); })();
+
+/* ---- contador de candidatas (vem do Apps Script) ---- */
+function buscarFila(){
+  fetch(ENDPOINT + "?total=1")
+    .then(r => r.json())
+    .then(d => {
+      if(d && typeof d.total === "number" && d.total >= 0){
+        posicaoFila = d.total + 1;
+        const el = document.getElementById("fila");
+        if(el){ el.textContent = "Você é a candidata nº " + posicaoFila; el.style.display = "inline-block"; }
+      }
+    })
+    .catch(()=>{});
 }
-const NUM_PROTOCOLO = protocolo();
 
 function cabecalho(){
   return `
@@ -500,15 +304,48 @@ function cabecalho(){
     </div>`;
 }
 
+/* ---- tela 1: a foto ---- */
 function abrir(){
   app.innerHTML = `
     ${cabecalho()}
     <h1>Ficha de candidatura</h1>
     <p class="subtitulo">Processo seletivo para namorar comigo. ${TOTAL} etapas, sem recurso, sem volta.</p>
-    <p class="aviso">Cada resposta é carimbada na hora. Responda com sinceridade — o setor percebe quando não é.</p>
-    <button class="botao" onclick="comecar()">Iniciar triagem</button>
+
+    <div class="bloco-foto">
+      <div class="foto3x4"><img src="${FOTO}" alt="Foto 3x4 do Fabrício" onerror="this.style.display='none'"></div>
+      <div class="legenda-foto">
+        <strong>Fabrício</strong><br>
+        Candidato à vaga de namorado.<br>
+        Programador. Dorme tarde. Fala durante o filme.
+      </div>
+    </div>
+
+    <p class="aviso">Esse sou eu. Quer continuar mesmo assim?</p>
+    <span class="selo-fila" id="fila" style="display:none"></span>
+
+    <div class="acoes">
+      <button class="botao" onclick="comecar()">Quero continuar</button>
+      <button class="botao secundario" onclick="desistir()">Desisti</button>
+    </div>
+
     <div class="assinatura">Preenchimento estimado: 2 minutos.<br>O resultado é definitivo e levemente injusto.</div>
   `;
+  buscarFila();
+}
+
+function desistir(){
+  app.innerHTML = `
+    ${cabecalho()}
+    <h1>Desistência registrada</h1>
+    <p class="subtitulo">Tudo bem. Pelo menos você foi honesta logo no começo, o que já é mais do que muita gente faz.</p>
+    <p class="aviso">A vaga continua aberta. Sem ressentimentos. Quase nenhum.</p>
+    <button class="botao secundario" onclick="abrir()">Pensando bem, deixa eu ver</button>
+  `;
+  carimbo.textContent = "Desistente";
+  carimbo.className = "carimbo reprovado";
+  void carimbo.offsetWidth;
+  carimbo.classList.add("bate");
+  setTimeout(()=>{ carimbo.className = "carimbo"; }, 2200);
 }
 
 function comecar(){
@@ -520,10 +357,8 @@ function render(){
   const p = perguntas[atual];
   let quadros = "";
   for(let i=0;i<TOTAL;i++){
-    const cls = i < atual ? "quadro feito" : (i === atual ? "quadro atual" : "quadro");
-    quadros += `<div class="${cls}"></div>`;
+    quadros += `<div class="${i<atual?"quadro feito":(i===atual?"quadro atual":"quadro")}"></div>`;
   }
-
   app.innerHTML = `
     ${cabecalho()}
     <div class="etapas">${quadros}</div>
@@ -532,13 +367,11 @@ function render(){
     <div class="opcoes" id="opcoes"></div>
     <p class="parecer" id="parecer"></p>
   `;
-
   const box = document.getElementById("opcoes");
-  p.opcoes.forEach((op, i) => {
+  p.opcoes.forEach((op,i)=>{
     const b = document.createElement("button");
-    b.className = "opcao";
-    b.textContent = op.texto;
-    b.onclick = () => responder(i);
+    b.className = "opcao"; b.textContent = op.texto;
+    b.onclick = ()=>responder(i);
     box.appendChild(b);
   });
 }
@@ -546,89 +379,81 @@ function render(){
 function responder(indice){
   if(travado) return;
   travado = true;
-
-  const p = perguntas[atual];
-  const op = p.opcoes[indice];
-
+  const p = perguntas[atual], op = p.opcoes[indice];
   pontuacao += op.pontos;
   respostas.push({ pergunta:p.pergunta, resposta:op.texto, pontos:op.pontos });
 
-  const botoes = document.querySelectorAll(".opcao");
-  botoes.forEach((b,i) => {
+  document.querySelectorAll(".opcao").forEach((b,i)=>{
     b.disabled = true;
-    if(i === indice) b.classList.add("escolhida");
+    if(i===indice) b.classList.add("escolhida");
   });
 
   let selo, classe;
-  if(op.pontos >= 9){ selo = "Aprovado"; classe = "aprovado"; }
-  else if(op.pontos >= 6){ selo = "Sob análise"; classe = "analise"; }
-  else { selo = "Reprovado"; classe = "reprovado"; }
+  if(op.pontos >= 9){ selo="Aprovado"; classe="aprovado"; }
+  else if(op.pontos >= 6){ selo="Sob análise"; classe="analise"; }
+  else { selo="Reprovado"; classe="reprovado"; }
 
   carimbo.textContent = selo;
   carimbo.className = "carimbo " + classe;
   void carimbo.offsetWidth;
   carimbo.classList.add("bate");
 
-  if(classe === "reprovado"){
+  if(classe==="reprovado"){
     ficha.classList.add("tremor");
-    setTimeout(()=>ficha.classList.remove("tremor"), 320);
+    setTimeout(()=>ficha.classList.remove("tremor"),320);
   }
 
   const parecer = document.getElementById("parecer");
   parecer.textContent = "— " + op.parecer;
   parecer.classList.add("visivel");
 
-  setTimeout(() => {
+  setTimeout(()=>{
     carimbo.className = "carimbo";
-    atual++;
-    travado = false;
-    if(atual < TOTAL) render();
-    else identificacao();
+    atual++; travado = false;
+    if(atual < TOTAL) render(); else identificacao();
   }, 1500);
 }
 
+/* ---------- validação ---------- */
 const DDDS = [11,12,13,14,15,16,17,18,19,21,22,24,27,28,31,32,33,34,35,37,38,41,42,43,44,45,46,47,48,49,51,53,54,55,61,62,63,64,65,66,67,68,69,71,73,74,75,77,79,81,82,83,84,85,86,87,88,89,91,92,93,94,95,96,97,98,99];
 
 function pareceDigitacaoAleatoria(txt){
-  const t = txt.toLowerCase().replace(/[^a-zà-ú]/g,"");
+  const t = (txt||"").toLowerCase().replace(/[^a-zà-ú]/g,"");
   if(t.length < 2) return true;
-  if(!/[aeiouà-ú]/.test(t)) return true;                 // sem nenhuma vogal
-  if(/(.)\1\1/.test(t)) return true;                      // tres letras iguais seguidas
-  const mash = ["asd","sdf","dfg","qwe","wer","ert","zxc","xcv","jkl","hjk","teste","test","aaa","abc"];
-  if(mash.some(m => t.includes(m))) return true;
+  if(!/[aeiouà-ú]/.test(t)) return true;
+  if(/(.)\1\1/.test(t)) return true;
+  const mash = ["asd","sdf","dfg","qwe","wer","ert","zxc","xcv","jkl","hjk","teste","test","abc"];
+  if(mash.some(m=>t.includes(m))) return true;
   const vogais = (t.match(/[aeiouà-ú]/g)||[]).length;
-  if(vogais / t.length < 0.2) return true;                // quase so consoante
-  for(let tam = 2; tam <= Math.floor(t.length/2); tam++){  // pedaco repetido: dawdawdaw
+  if(vogais / t.length < 0.2) return true;
+  for(let tam=2; tam<=Math.floor(t.length/2); tam++){
     if(t.length % tam === 0 && t === t.slice(0,tam).repeat(t.length/tam)) return true;
   }
   return false;
 }
-
 function limparInsta(v){
-  return v.trim().replace(/^@+/,"").replace(/^https?:\/\/(www\.)?instagram\.com\//i,"").replace(/\/+$/,"").trim();
+  return (v||"").trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i,"").replace(/^@+/,"").replace(/\/+$/,"").trim();
 }
-
 function soDigitos(v){ return (v||"").replace(/\D/g,""); }
-
 function formatarZap(v){
   const d = soDigitos(v).slice(0,11);
-  if(d.length <= 2) return d.length ? "(" + d : "";
-  if(d.length <= 6) return "(" + d.slice(0,2) + ") " + d.slice(2);
-  if(d.length <= 10) return "(" + d.slice(0,2) + ") " + d.slice(2,6) + "-" + d.slice(6);
-  return "(" + d.slice(0,2) + ") " + d.slice(2,7) + "-" + d.slice(7);
+  if(d.length <= 2) return d.length ? "("+d : "";
+  if(d.length <= 6) return "("+d.slice(0,2)+") "+d.slice(2);
+  if(d.length <= 10) return "("+d.slice(0,2)+") "+d.slice(2,6)+"-"+d.slice(6);
+  return "("+d.slice(0,2)+") "+d.slice(2,7)+"-"+d.slice(7);
 }
-
 function zapValido(v){
   const d = soDigitos(v);
   if(d.length !== 11) return false;
   if(!DDDS.includes(parseInt(d.slice(0,2),10))) return false;
   if(d[2] !== "9") return false;
-  if(/^(\d)\1{10}$/.test(d)) return false;                // 99999999999
+  if(/^(\d)\1{10}$/.test(d)) return false;
   if(d.slice(2) === "912345678") return false;
   return true;
 }
-
-let dadosPendentes = null;
+function escapar(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
 
 function identificacao(){
   app.innerHTML = `
@@ -644,28 +469,27 @@ function identificacao(){
     <input class="campo" id="zap" placeholder="(19) 90000-0000" inputmode="numeric" autocomplete="tel" maxlength="16">
 
     <label for="insta">Instagram <span style="text-transform:none">(opcional)</span></label>
-    <input class="campo" id="insta" placeholder="seu.usuario" autocomplete="off" maxlength="30">
+    <input class="campo" id="insta" placeholder="seu.usuario" autocomplete="off" maxlength="40">
 
     <label for="cidade">Cidade</label>
     <input class="campo" id="cidade" placeholder="Onde você mora" autocomplete="address-level2" maxlength="40">
 
     <p class="erro" id="erro"></p>
-    <button class="botao" id="btnEnviar" onclick="conferir()">Continuar</button>
+    <button class="botao" onclick="conferir()">Continuar</button>
   `;
-
-  const campoZap = document.getElementById("zap");
-  campoZap.addEventListener("input", () => {
-    const pos = campoZap.selectionStart === campoZap.value.length;
-    campoZap.value = formatarZap(campoZap.value);
-    if(pos) campoZap.setSelectionRange(campoZap.value.length, campoZap.value.length);
+  const cz = document.getElementById("zap");
+  cz.addEventListener("input", ()=>{
+    const fim = cz.selectionStart === cz.value.length;
+    cz.value = formatarZap(cz.value);
+    if(fim) cz.setSelectionRange(cz.value.length, cz.value.length);
   });
 }
 
 function recusar(msg){
   const erro = document.getElementById("erro");
-  erro.textContent = msg;
+  if(erro) erro.textContent = msg;
   ficha.classList.add("tremor");
-  setTimeout(()=>ficha.classList.remove("tremor"), 320);
+  setTimeout(()=>ficha.classList.remove("tremor"),320);
 }
 
 function conferir(){
@@ -675,16 +499,12 @@ function conferir(){
   const cidade = document.getElementById("cidade").value.trim().replace(/\s+/g," ");
 
   if(!nome || !zap || !cidade) return recusar("Falta preencher. O setor não aceita ficha incompleta.");
-
   if(nome.length < 2 || !/^[A-Za-zÀ-ÿ' -]+$/.test(nome) || pareceDigitacaoAleatoria(nome))
     return recusar("Esse nome não convenceu ninguém aqui. Escreve o de verdade.");
-
   if(!zapValido(zap))
     return recusar("Esse número não existe. Onze dígitos, com DDD e o 9 na frente.");
-
   if(cidade.length < 3 || !/^[A-Za-zÀ-ÿ' .-]+$/.test(cidade) || pareceDigitacaoAleatoria(cidade))
     return recusar("Que cidade é essa? Não achei no mapa.");
-
   if(insta && (!/^[A-Za-z0-9._]{2,30}$/.test(insta) || pareceDigitacaoAleatoria(insta)))
     return recusar("Esse @ não parece real. Corrige ou deixa em branco.");
 
@@ -694,14 +514,12 @@ function conferir(){
     ${cabecalho()}
     <h1>Confere aí</h1>
     <p class="subtitulo">Última chance de corrigir. Depois disso a ficha vai pro arquivo.</p>
-
-    <div style="font-size:15px;line-height:2;margin-bottom:22px">
-      <div><span style="color:var(--grafite);font-size:11px">NOME</span><br><strong>${nome}</strong></div>
-      <div><span style="color:var(--grafite);font-size:11px">WHATSAPP</span><br><strong>${zap}</strong></div>
-      ${insta ? `<div><span style="color:var(--grafite);font-size:11px">INSTAGRAM</span><br><strong>@${insta}</strong></div>` : ""}
-      <div><span style="color:var(--grafite);font-size:11px">CIDADE</span><br><strong>${cidade}</strong></div>
+    <div style="font-size:15px;line-height:1.9;margin-bottom:22px">
+      <div><span style="color:var(--grafite);font-size:11px">NOME</span><br><strong>${escapar(nome)}</strong></div>
+      <div><span style="color:var(--grafite);font-size:11px">WHATSAPP</span><br><strong>${escapar(zap)}</strong></div>
+      ${insta?`<div><span style="color:var(--grafite);font-size:11px">INSTAGRAM</span><br><strong>@${escapar(insta)}</strong></div>`:""}
+      <div><span style="color:var(--grafite);font-size:11px">CIDADE</span><br><strong>${escapar(cidade)}</strong></div>
     </div>
-
     <div class="acoes">
       <button class="botao" id="btnEnviar" onclick="enviar()">Tá certo, entregar</button>
       <button class="botao secundario" onclick="identificacao()">Corrigir</button>
@@ -712,11 +530,8 @@ function conferir(){
 function enviar(){
   if(!dadosPendentes) return;
   const { nome, zap, insta, cidade } = dadosPendentes;
-
   const btn = document.getElementById("btnEnviar");
-  btn.disabled = true;
-  btn.textContent = "Protocolando...";
-
+  btn.disabled = true; btn.textContent = "Protocolando...";
   const porcentagem = Math.round((pontuacao / MAXIMO) * 100);
 
   fetch(ENDPOINT, {
@@ -729,34 +544,37 @@ function enviar(){
 
 function resultado(nome, porcentagem){
   let selo, classe, veredito, detalhe;
-
   if(porcentagem < 45){
-    selo = "Reprovado"; classe = "reprovado";
-    veredito = "Candidatura indeferida.";
-    detalhe = "Seu currículo fica no banco de talentos. A gente pode ser amigo, e olha que isso já é bastante coisa.";
+    selo="Reprovado"; classe="reprovado";
+    veredito="Candidatura indeferida.";
+    detalhe="Seu currículo fica no banco de talentos. A gente pode ser amigo, e olha que isso já é bastante coisa.";
   } else if(porcentagem < 70){
-    selo = "Sob análise"; classe = "analise";
-    veredito = "Passou pra segunda fase.";
-    detalhe = "Tem potencial, mas algumas respostas acenderam uma luzinha amarela aqui. Vou querer conversar melhor.";
+    selo="Sob análise"; classe="analise";
+    veredito="Passou pra segunda fase.";
+    detalhe="Tem potencial, mas algumas respostas acenderam uma luz amarela aqui. Vou querer conversar melhor.";
   } else if(porcentagem < 90){
-    selo = "Aprovado"; classe = "aprovado";
-    veredito = "Aprovada na triagem.";
-    detalhe = "Compatibilidade alta o bastante pra eu te chamar no direct. Prepara o assunto.";
+    selo="Aprovado"; classe="aprovado";
+    veredito="Aprovada na triagem.";
+    detalhe="Compatibilidade alta o bastante pra eu te chamar. Prepara o assunto.";
   } else {
-    selo = "Contratada"; classe = "aprovado";
-    veredito = "Contratada. Quando você pode começar?";
-    detalhe = "Esse número quase não aparece. Ou você é perfeita, ou respondeu tudo pensando em me agradar. Nos dois casos, funcionou.";
+    selo="Contratada"; classe="aprovado";
+    veredito="Contratada. Quando você pode começar?";
+    detalhe="Esse número quase não aparece. Ou você é perfeita, ou respondeu tudo pensando em me agradar. Nos dois casos, funcionou.";
   }
+
+  ultimoResultado = { nome, porcentagem, selo, classe, veredito };
 
   app.innerHTML = `
     ${cabecalho()}
     <div class="contador">Parecer final · Protocolo ${NUM_PROTOCOLO}</div>
     <div class="placar">${porcentagem}<span>%</span></div>
     <div class="contador">de compatibilidade</div>
-    <p class="veredito">${nome}, ${veredito}</p>
+    <p class="veredito">${escapar(nome)}, ${veredito}</p>
     <p class="detalhe">${detalhe}</p>
+    ${posicaoFila?`<span class="selo-fila">Candidata nº ${posicaoFila}</span><br>`:""}
     <div class="acoes">
-      <button class="botao secundario" onclick="copiar(${porcentagem})">Copiar resultado</button>
+      <button class="botao" onclick="baixarImagem()">Baixar imagem</button>
+      <button class="botao secundario" onclick="copiar()">Copiar link</button>
       <button class="botao secundario" onclick="abrir()">Refazer</button>
     </div>
     <div class="assinatura">
@@ -772,17 +590,124 @@ function resultado(nome, porcentagem){
   setTimeout(()=>{ carimbo.className = "carimbo"; }, 3000);
 }
 
-function copiar(porcentagem){
-  const texto = `Fiz o processo seletivo pra namorar com o Fabrício e deu ${porcentagem}% de compatibilidade. Faz o seu: ${location.href}`;
-  navigator.clipboard.writeText(texto).then(()=>{
-    alert("Copiado. Agora manda no grupo.");
-  }).catch(()=>{
-    prompt("Copia aí:", texto);
+function copiar(){
+  const r = ultimoResultado;
+  const texto = `Fiz o processo seletivo pra namorar com o Fabrício e deu ${r.porcentagem}% de compatibilidade. Faz o seu: ${location.origin+location.pathname}`;
+  navigator.clipboard.writeText(texto)
+    .then(()=>alert("Copiado. Agora manda no grupo."))
+    .catch(()=>prompt("Copia aí:", texto));
+}
+
+/* ---------- gerar imagem do parecer ---------- */
+function quebrarTexto(ctx, texto, largura){
+  const palavras = texto.split(" ");
+  const linhas = []; let linha = "";
+  palavras.forEach(p=>{
+    const teste = linha ? linha+" "+p : p;
+    if(ctx.measureText(teste).width > largura && linha){ linhas.push(linha); linha = p; }
+    else linha = teste;
   });
+  if(linha) linhas.push(linha);
+  return linhas;
+}
+
+function desenharParecer(){
+  const r = ultimoResultado;
+  const c = document.getElementById("telaImagem");
+  const ctx = c.getContext("2d");
+  const L = c.width, A = c.height;
+
+  const cores = { rosa:"#F7D9DF", tinta:"#16265E", grafite:"#5A6472",
+                  vermelho:"#D42D3D", verde:"#1F7A4D", ambar:"#B4761A", mesa:"#1E2A38" };
+  const corSelo = r.classe==="aprovado" ? cores.verde : (r.classe==="analise" ? cores.ambar : cores.vermelho);
+
+  ctx.fillStyle = cores.mesa; ctx.fillRect(0,0,L,A);
+  const m = 60;
+  ctx.fillStyle = cores.rosa; ctx.fillRect(m, m, L-m*2, A-m*2);
+
+  // furos de fichário
+  ctx.fillStyle = cores.mesa; ctx.globalAlpha = .35;
+  [0.2,0.5,0.8].forEach(p=>{ ctx.beginPath(); ctx.arc(m+46, m+(A-m*2)*p, 15, 0, Math.PI*2); ctx.fill(); });
+  ctx.globalAlpha = 1;
+
+  const x = m + 110, larg = L - m*2 - 170;
+
+  ctx.fillStyle = cores.grafite;
+  ctx.font = "26px 'Courier Prime', monospace";
+  ctx.fillText("DEPARTAMENTO DE RELACIONAMENTOS", x, m+90);
+  ctx.fillText("Protocolo " + NUM_PROTOCOLO, x, m+130);
+
+  ctx.strokeStyle = cores.tinta; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x, m+165); ctx.lineTo(x+larg, m+165); ctx.stroke();
+
+  ctx.fillStyle = cores.tinta;
+  ctx.font = "56px Anton, Impact, sans-serif";
+  ctx.fillText("PARECER FINAL", x, m+250);
+
+  ctx.font = "240px Anton, Impact, sans-serif";
+  ctx.fillText(r.porcentagem + "%", x, m+490);
+
+  ctx.fillStyle = cores.grafite;
+  ctx.font = "30px 'Courier Prime', monospace";
+  ctx.fillText("de compatibilidade", x, m+540);
+
+  ctx.fillStyle = cores.tinta;
+  ctx.font = "bold 40px 'Courier Prime', monospace";
+  let y = m+640;
+  quebrarTexto(ctx, r.nome + ", " + r.veredito, larg).forEach(l=>{ ctx.fillText(l, x, y); y += 52; });
+
+  // carimbo
+  ctx.save();
+  ctx.translate(L/2 + 60, A - m - 300);
+  ctx.rotate(-14 * Math.PI/180);
+  ctx.font = "84px Anton, Impact, sans-serif";
+  const texto = r.selo.toUpperCase();
+  const larguraSelo = ctx.measureText(texto).width;
+  ctx.strokeStyle = corSelo; ctx.fillStyle = corSelo; ctx.lineWidth = 8;
+  ctx.globalAlpha = .92;
+  ctx.strokeRect(-larguraSelo/2 - 34, -78, larguraSelo + 68, 122);
+  ctx.strokeRect(-larguraSelo/2 - 22, -66, larguraSelo + 44, 98);
+  ctx.textAlign = "center";
+  ctx.fillText(texto, 0, 12);
+  ctx.restore();
+  ctx.textAlign = "left"; ctx.globalAlpha = 1;
+
+  ctx.strokeStyle = cores.grafite; ctx.lineWidth = 2;
+  ctx.setLineDash([12,10]);
+  ctx.beginPath(); ctx.moveTo(x, A-m-150); ctx.lineTo(x+larg, A-m-150); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = cores.grafite;
+  ctx.font = "26px 'Courier Prime', monospace";
+  ctx.fillText("Avaliador: Fabrício", x, A-m-105);
+  ctx.fillText("Faça o seu: " + location.host + location.pathname, x, A-m-65);
+
+  return c;
+}
+
+function baixarImagem(){
+  if(!ultimoResultado) return;
+  const gerar = ()=>{
+    const c = desenharParecer();
+    c.toBlob(blob=>{
+      const arquivo = new File([blob], "parecer.png", { type:"image/png" });
+      if(navigator.canShare && navigator.canShare({ files:[arquivo] })){
+        navigator.share({ files:[arquivo], title:"Meu parecer" }).catch(()=>salvar(blob));
+      } else salvar(blob);
+    }, "image/png");
+  };
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(gerar); else gerar();
+}
+
+function salvar(blob){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "parecer.png";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 2000);
 }
 
 abrir();
 </script>
-
 </body>
 </html>
